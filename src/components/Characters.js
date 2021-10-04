@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
+import { Link, Route } from 'react-router-dom';
 import {Row, Container} from 'react-bootstrap';
 import Character from './Character';
 import {createHash} from 'crypto';
 import axios from 'axios';
+import CharacterDetail from './CharacterDetail';
 
 class Characters extends Component {
     constructor(props) {
@@ -47,7 +49,11 @@ class Characters extends Component {
                 {this.state.characters === null && <p>Loading Marvel...</p>}
                 {
                 this.state.characters && this.state.characters.map(character => (
-                    <Character character={character} key={character.id}/>))
+                    <Link to={`/${character.id}`}>
+                        <Route path="/" component={CharacterDetail} exact/>
+                        <Character character={character} key={character.id}/>
+                    </Link>
+                    ))
                 }
             </Row>
           </Container>

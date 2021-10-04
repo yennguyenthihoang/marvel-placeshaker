@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router} from 'react-router-dom';
 import './App.css';
 import Characters from './components/Characters';
 import CharacterDetail from './components/CharacterDetail';
@@ -14,8 +14,6 @@ function App() {
         <div>
             <Characters/>
         </div>
-        <Route exact path='/characters' component={Characters}/>
-        <Route exact path='/characters/characterId' component={CharacterDetail}/>
       </div>
     </Router>
   );

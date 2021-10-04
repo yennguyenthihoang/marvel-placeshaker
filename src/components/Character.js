@@ -8,24 +8,29 @@ class Character extends Component {
 	}
 
 	render() {
-        let character = this.props.character;
-		let img = character.thumbnail.path + '.' + character.thumbnail.extension;
-
-		return (
-			<Col xs={12} sm={6} md={4} key={character.id}>
+        let character = {};
+		let img = "";
+        if(this.props.character){
+            character = this.props.character;
+            img = character.thumbnail.path + '.' + character.thumbnail.extension;
+            
+        }
+        return (
+            <Col xs={12} sm={6} md={4} key={character.id}>
                 <Card >
                     <Card.Body>
                         <Card.Img variant="top" src={img} />
                         <Card.Title>{character.name}</Card.Title>
                         <Row className="App-link">
-                            <Card.Link href={`/characters/${ character.id }`}>detail</Card.Link>
-                            <Card.Link href="#">wiki</Card.Link>
-                            <Card.Link href="#">comiclink</Card.Link>
+                        {character.urls && character.urls.map(url => (
+                            <Card.Link href={url.url}>{url.type}</Card.Link>
+                        ))
+						}
                         </Row>
                     </Card.Body>
                 </Card>
-			</Col>
-		);
+            </Col>
+        );
 	}
 };
 

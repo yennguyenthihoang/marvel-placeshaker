@@ -19,6 +19,13 @@
   border: none;
 }
 
+.col .character-detail{
+  text-align: left;
+}
+
+.character-detail-title {
+  color: rgb(96, 194, 240);
+}
 .card-body {
   width: 100%;
   overflow: auto;
