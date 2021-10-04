@@ -25,7 +25,7 @@ class Character extends Component {
                         {character.urls && character.urls.map(url => (
                             <Card.Link href={url.url}>{url.type}</Card.Link>
                         ))
-						}
+                        }
                         </Row>
                     </Card.Body>
                 </Card>

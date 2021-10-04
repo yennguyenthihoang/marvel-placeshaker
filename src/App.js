@@ -1,8 +1,8 @@
 import React from 'react';
-import {BrowserRouter as Router} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import './App.css';
-import Characters from './components/Characters';
 import CharacterDetail from './components/CharacterDetail';
+import Characters from './components/Characters';
 
 function App() {
   return (
@@ -15,6 +15,8 @@ function App() {
             <Characters/>
         </div>
       </div>
+      <Route exact path='/characters' component={Characters}/>
+      <Route exact path="/characters/:characterId" component={CharacterDetail} />
     </Router>
   );
 }

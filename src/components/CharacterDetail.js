@@ -8,15 +8,21 @@ class CharacterDetail extends Component {
 	constructor(props) {
         super(props);
         this.state = {
-            character: {},
+            character: null,
           };
     }
 	
     async componentDidMount() {
-		const character = this.getCharacterById(props.id);
-		this.setState({
-		character
-		});
+		if(this.props){
+			try {
+				const character = await this.getCharacterById(this.props.match.params.characterId);
+				this.setState({
+					character
+				});
+			} catch (err) {
+				this.setState({ character: {} });
+			}
+		}
     }
 	
     getCharacterById(characterId) {
