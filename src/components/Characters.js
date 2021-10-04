@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
 import {Row, Container} from 'react-bootstrap';
 import Character from './Character';
 import {createHash} from 'crypto';
@@ -50,9 +49,7 @@ class Characters extends Component {
                 {this.state.characters === null && <p>Loading Marvel...</p>}
                 {
                     this.state.characters && this.state.characters.map(character => (
-                        <Link to={`/characters/${character.id}`} >
-                            <Character character={character} key={character.id}/>
-                        </Link>
+                        <Character character={character} key={character.id}/>
                         ))
                 }
             </Row>

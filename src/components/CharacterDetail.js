@@ -11,17 +11,13 @@ class CharacterDetail extends Component {
             character: null,
           };
     }
-	
+
     async componentDidMount() {
-		if(this.props){
-			try {
-				const character = await this.getCharacterById(this.props.match.params.characterId);
-				this.setState({
-					character
-				});
-			} catch (err) {
-				this.setState({ character: {} });
-			}
+		if(this.props.match.params.characterId){
+			const character = this.getCharacterById(this.props.match.params.characterId);
+			this.setState({
+				character
+			});
 		}
     }
 	
@@ -50,46 +46,44 @@ class CharacterDetail extends Component {
 	
 	render() {
 		const {character} = this.state;
-		let img = "";
-		if(character){
-			img = character.thumbnail.path + '.' + character.thumbnail.extension;
-		}
-		return (
-			<Container>
-				{character === null && <p>Loading Marvel Detail...</p>}
-				<Row>
-					<Col xs={4} sm={4} md={4}>
-						<Card >
-							<Card.Body>
-								<Card.Img variant="top" src={img} />
-							</Card.Body>
-						</Card>
-					</Col>
-					<Col xs={6} sm={6} md={6}>
-						<Card >
-							<Card.Body>
-								<Card.Title className="character-detail-title">{character.name}</Card.Title>
-								<Card.Text>{character.description}</Card.Text>
-							</Card.Body>
-						</Card>
-						<div className="character-detail">
-							<Row><b>Comics</b></Row>
-							{character.comics && character.comics.items.map(comic => (
-								<Row><p>{comic.name}</p></Row>))
-							}
-							<Row><b>Series</b></Row>
-							{character.series && character.series.items.map(serie => (
-								<Row><p>{serie.name}</p></Row>))
-							}
-							<Row><b>Events</b></Row>
-							{character.events && character.events.items.map(event => (
-								<Row><p>{event.name}</p></Row>))
-							}
-						</div >
-					</Col>
-				</Row>
-			</Container>
-		)
+		if(character !== null && character !== undefined){
+			let img = character.thumbnail.path + '.' + character.thumbnail.extension;
+			return (
+				<Container>
+					<Row>
+						<Col xs={4} sm={4} md={4}>
+							<Card >
+								<Card.Body>
+									<Card.Img variant="top" src={img} />
+								</Card.Body>
+							</Card>
+						</Col>
+						<Col xs={6} sm={6} md={6}>
+							<Card >
+								<Card.Body>
+									<Card.Title className="character-detail-title">{character.name}</Card.Title>
+									<Card.Text>{character.description}</Card.Text>
+								</Card.Body>
+							</Card>
+							<div className="character-detail">
+								<Row><b>Comics</b></Row>
+								{character.comics && character.comics.items.map(comic => (
+									<Row><p>{comic.name}</p></Row>))
+								}
+								<Row><b>Series</b></Row>
+								{character.series && character.series.items.map(serie => (
+									<Row><p>{serie.name}</p></Row>))
+								}
+								<Row><b>Events</b></Row>
+								{character.events && character.events.items.map(event => (
+									<Row><p>{event.name}</p></Row>))
+								}
+							</div >
+						</Col>
+					</Row>
+				</Container>
+			)
+		} else return <p>Error Loading ...</p>;
 	}
 };
 
