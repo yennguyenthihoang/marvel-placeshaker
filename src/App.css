@@ -14,6 +14,12 @@
   color: white;
 }
 
+.header a{
+  color: white;
+  text-decoration: none;
+  background-color: transparent;
+}
+
 .card {
   font-family: 'Marvel', sans-serif;
   border: none;

@@ -83,7 +83,7 @@ class CharacterDetail extends Component {
 					</Row>
 				</Container>
 			)
-		} else return <p>Error Loading ...</p>;
+		} else return <barLoading>Loading .....</barLoading>;
 	}
 };
 

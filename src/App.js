@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Switch, useParams} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 import './App.css';
 import CharacterDetail from './components/CharacterDetail';
 import Characters from './components/Characters';
@@ -9,17 +9,17 @@ function App() {
     <Router>
       <div className="app">
         <div className="header">
-          <h4>The Marvel Characters</h4>
+          <Link to="/characters"><h4>The Marvel Characters</h4></Link>
         </div>
-        <div>
-            <Characters/>
-        </div>
+        <Switch>
+          <Route exact path='/characters' component={Characters}>
+            <div>
+                <Characters/>
+            </div>
+          </Route>
+          <Route exact path="/characters/:characterId" component={CharacterDetail} />
+        </Switch>
       </div>
-      <Switch>
-        <Route exact path='/characters' component={Characters}/>
-        <Route exact path="/characters/:characterId" component={CharacterDetail} />
-      </Switch>
-      
     </Router>
   );
 }
